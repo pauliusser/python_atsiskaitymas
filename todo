@@ -1,0 +1,212 @@
+☐ 1. STUDENTAI.
+  Jums pateiktas failas studentai_lietuviski_INT.csv, kuriame yra 50 studentų įrašų.
+  Kiekvienoje eilutėje pateikta
+  Vardas,Pavardė,pažymys1,pažymys2,...,pažymysN
+  Studentas gali turėti nuo 1 iki 10 pažymių.
+  Pažymiai — sveiki skaičiai 1–10.
+  Skaičius pažymių kiekvienam studentui yra skirtingas.
+  Sukurti programą, atliekanti nurodytas funkcijas:
+    ☐ 1. Klasės Studentas sukūrimas
+      Atributai:
+        ☐ vardas
+        ☐ pavarde
+        ☐ pazymiai
+          sveikųjų skaičių sąrašas
+      Metodai:
+        ☐ validus_vidurkis(). 
+          Grąžina True, jei studentas turi 3 ar daugiau pažymių, kitaip False.
+        ☐ vidurkis(). 
+          Jei pažymių ≥ 3 – grąžina pažymių vidurkį. Jei < 3 – grąžina None.
+        ☐ __str__(). 
+          Gražiam studento atspausdinimui
+    ☐ 2. CSV failo nuskaitymas:
+    užduotys:
+      ☐ Nuskaityti visus 50 studentų į Studentas objektų sąrašą.
+      ☐ Patikrinti, ar visi pažymiai yra 1–10.
+      ☐ Netinkamų duomenų šiame atsiskaityme nėra — bet reikia numatyti struktūrą ir tvarkymą.
+    ☐ 3. Studentų analizė
+      Sukurti atskiras funkcijas, kurios:
+        ☐ a. Surikiuoja studentus pagal vidurkį mažėjančia tvarka.
+          Studentai, kurių vidurkis None, į šią rikiuotę neįtraukiami.
+        ☐ b. Grąžina studentų, turinčių mažiau nei 3 pažymius, sąrašą
+        ☐ c. Apskaičiuoja bendrą grupės statistiką
+          kuri susideda iš:
+            ☐ bendrą visų vidurkių vidurkį,
+            ☐ medianą,
+            ☐ maksimalų vidurkį,
+            ☐ minimalų vidurkį (iš tų, kurie turi bent 3 pažymius),
+            ☐ studentų skaičių, kurių vidurkis ≥ 8.
+    ☐ 4. Filtravimas ir rezultatų rinkimas
+      Sukurti funkciją, kuri:
+        ☐ atrenka studentus, kurių vidurkis ≥ 8,
+        ☐ įrašo juos į naują CSV failą pazangus.csv.
+        Failo formatas;
+        Vardas,Pavarde,Vidurkis
+        Vidurkis pateikiamas tikslumu iki 2 skaitmenų po kablelio.
+    ☐ 5. Ataskaitos generavimas
+      Sukurti tekstinį failą ataskaita.txt, kuriame turi būti:
+        ☐ a. 10 geriausiai besimokančių studentų.
+          Formatas;
+          1. Monika Petrauskaitė – 9.60
+          2. Jonas Jonaitis – 8.75
+        ☐ b. Studentai, kurių vidurkis neskaičiuojamas.
+          Formatas;
+          Aidas Bartkus – vidurkis neskaičiuojamas (trūksta 2 pažymių(o))
+          Lukas Jankauskas – vidurkis neskaičiuojamas (trūksta 1 pažymių(o))
+        ☐ c. Grupės statistika.
+          Pvz.;
+          Grupės vidurkių vidurkis: 7.84
+          Mediana: 7.50
+          Maksimalus vidurkis: 9.60
+          Minimalus vidurkis: 5.20
+          Pažangių studentų (vidurkis ≥ 8): 14
+    ☐ 6. Papildomai balai
+      už:
+        ☐ gražiai suformatuotą, aiškią, tvarkingą programos struktūrą,
+        ☐ komentarus,
+        ☐ aiškiai įvardytas funkcijas.
+☐ 2. E-PARDUOTUVĖS SANDĖLIO VALDYMAS.
+  Reikia sukurti programą, kuri nuskaito failo prekes250.txt duomenis,
+  generuoja atsitiktinį prekių kiekį (nuo 0 iki 200),
+  sukuria prekės ID (pagal pateiktą taisyklę),
+  surašo viską į failą sandėlis.csv
+  ir leidžia atlikti duomenų analizę pagal pateiktus reikalavimus.
+  ☐ 1. Duomenų generavimas
+    ☐ Sugeneruoti failą sandelys.csv. 
+      Kiekviena prekė turi:
+      ☐ ID (pvz. PR12345). 
+      Kiekvienos prekės ID sudaromas iš dviejų raidžių ir penkiaženklio skaičiaus.
+      Jį sudaro 3 dalys:
+      ☐ o Dvi didžiosios raidės. 
+        A – prekės pavadinimo pirmoji raidė (didžioji).
+        B – kategorijos pirmoji raidė (didžioji).
+        Pav. Kėdė  K, Baldai → B. Raidžių dalis: KB
+      ☐ o Kategorijos eilės numeris (1 skaitmuo).
+        Kategorijos sąrašas pirmiausia rūšiuojamas abėcėlės tvarka.
+        Pagal jo vietą (1, 2, 3, …) priskiriamas kategorijos indeksas.
+        Pav. surikiuotas sąrašas:
+          1. Apranga
+          2. Automobiliai
+          3. Baldai
+          4. Elektronika
+          5. .....
+          Jei kategorija „Baldai“, jos eilės numeris yra 3.
+          Taigi ID pradžioje po raidžių bus 3.
+      ☐ o Eilės numeris toje kategorijoje (4 skaitmenys)
+          Kiekviena prekė savo kategorijoje gauna eilės numerį
+          pirmoji prekė → 0001
+          antroji → 0002
+          ...
+          25-oji → 0025
+          Tai keturių skaitmenų formatas su nuliais pradžioje.
+        ☐ Kategoriją („Elektronika“, „Buitis“, „Sportas“, …)
+        ☐ Kainą (0.99–999.99)
+        ☐ Likutį (0–200)
+      Pavyzdys:
+        PR10291,Monitorius,Elektronika,129.99,12
+        PR20011,Kėdė,Baldai,49.99,3
+  ☐ 2. Analizės funkcijos
+    ☐ a.
+      Rasti:
+        ☐ brangiausią prekę
+        ☐ mažiausią likutį turinčią prekę
+        ☐ sandėlio bendrą vertę
+    ☐ b. 
+      Pagal kategoriją surasti:
+      (vartotojas įveda (pasirenka) norimą prekių kategoriją)
+        ☐ visų prekių kiekį
+        ☐ bendrą likutį
+        ☐ vidutinę kainą
+  ☐ 3. Generuoti failą ataskaita.txt
+    Turinys:
+      ☐ Top 10 brangiausių prekių
+      ☐ Mažiausių likučių sąrašas (likutis < 5)
+      ☐ Kategorijų analizė lentelės forma
+      ☐ Sandėlio vertė
+☐ 3. METEOROLOGINIŲ DUOMENŲ ANALIZĖ.
+  Jums pateikiamas failas meteo365_no_date.txt,
+  kuriame yra 365 meteorologinių stebėjimų įrašai – po vieną kiekvienai metų dienai.
+  Kiekviena eilutė turi
+  formą:
+    Diena;Temperatura;Krituliai;Vejas
+  Pvz.:
+    1;-4.3;3.1;12.4
+    2;-6.1;0.0;7.9
+    ...
+  Kur:
+    Diena – dienos numeris nuo 1 iki 365
+    Temperatūra – oro temperatūra (°C)
+    Krituliai – kritulių kiekis (mm)
+    Vėjas – vėjo stiprumas (m/s)
+  ☐ 1. Duomenų nuskaitymas
+    Parašykite programą, kuri:
+      ☐ nuskaito failą į atmintį;
+      ☐ kiekvieną įrašą paverčia žodynu arba objektu;
+      ☐ paverčia dienos numerį į tikrą datą naudojant datetime modulį
+    (laikykite, kad visi duomenys yra 2023 metų)
+    prie kiekvieno įrašo prideda:
+      ☐ savaitės dieną (pvz., „Pirmadienis“),
+      ☐ mėnesį,
+      ☐ metų laiką („Žiema“, „Pavasaris“, „Vasara“, „Ruduo“).
+    
+    kiekviena diena gali būti išsaugota formatu Pvz:
+      Diena: 74
+      Data: 2023-03-15
+      Savaitės diena: Trečiadienis
+      Mėnuo: Kovas
+      Metų laikas: Pavasaris
+      Temperatūra: -1.7°C
+      Krituliai: 6.2 mm
+      Vėjas: 4.5 m/s
+      Arba
+      74;2023 03 15;Trečiadienis;Kovas;Pavasaris;-1.7°C;6.2 mm;4.5 m/s
+  ☐ 2. Bendroji temperatūrų statistika bendra_statistika.txt
+    Apskaičiuokite:
+      ☐ metų vidutinę temperatūrą
+      ☐ temperatūros medianą
+      ☐ karščiausią dieną (data + savaitės diena + temperatūra)
+      ☐ šalčiausią dieną (data + savaitės diena + temperatūra)
+      ☐ dienų skaičių, kai temperatūra buvo > +25°C
+      ☐ dienų skaičių, kai temperatūra buvo < –10°C
+  ☐ 3. Kritulių analizė krituliai.txt
+    Sudarykite kritulių histogramą (tekstinę), pvz.:
+    0–5 mm ██████████████████████████████████████████████ (242 d.)
+    6–15 mm ██████████████████ (78 d.)
+    16–30 mm ███████ (35 d.)
+    >30 mm ██ (10 d.)
+    Histogramą galite kurti naudodami #, █ ar bet kokius simbolius
+    (pabandyk print("\u2588")).
+    Nepamiršk pateikiamų duomenų išdėstymo (lygiuotės).
+    Duomenys turi būti atvaizduoti panašiai kaip pateiktam pav.
+  ☐ 4. Ekstremalios dienos („audros“) failas audra.txt
+    Raskite visas dienas, kurios atitinka abi sąlygas:
+      ☐ vėjas ≥ 15 m/s
+      ☐ krituliai ≥ 10 mm
+      Tokias dienas išveskite taip:
+      2023-03-14 (Antradienis) – AUDRA: krituliai 14 mm, vėjas 18 m/s
+  ☐ 5. Mėnesių statistika failas meniasiai.txt
+    Kiekvienam mėnesiui apskaičiuokite:
+      ☐ vidutinę temperatūrą,
+      ☐ aukščiausią ir žemiausią temperatūrą,
+      ☐ kritulių sumą,
+      ☐ vidutinį vėją.
+    Atvaizduokite aiškiai:
+      GEGUŽĖ:
+      Vid. temperatūra: 14.2°C
+      Max temp: 22.4°C
+      Min temp: 4.1°C
+      Krituliai: 65.3 mm
+      Vėjas: 4.5 m/s
+  ☐ 6. Metų laikų statistika metai.txt
+    Pagal datas automatiškai priskirkite metų laiką:
+      ☐ Žiema: gruodis–vasaris
+      ☐ Pavasaris: kovas–gegužė
+      ☐ Vasara: birželis–rugpjūtis
+      ☐ Ruduo: rugsėjis–lapkritis
+    Apskaičiuokite metų laikotarpio:
+      ☐ vidutinę temperatūrą,
+      ☐ kritulių sumą,
+      ☐ vėjo vidurkį.
+      ☐ Šalčiausia laikotarpio diena (pateikiami visi dienos duomenys)
+      ☐ Šilčiausia laikotarpio diena (pateikiami visi dienos duomenys)
+      ☐ Dieną, kada iškrito daugiausiai kritulių
