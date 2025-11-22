@@ -58,4 +58,4 @@ def main():
         case _:
           print("neteisingas pasirinkimas")
 if __name__ == "__main__":
-    main()
+  main()

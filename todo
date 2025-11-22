@@ -1,5 +1,5 @@
 Uzduotys:
-  ☐ 1. STUDENTAI.
+  ✔ 1. STUDENTAI. @done(25-11-22 23:39)
     Jums pateiktas failas studentai_lietuviski_INT.csv, kuriame yra 50 studentų įrašų.
     Kiekvienoje eilutėje pateikta
     Vardas,Pavardė,pažymys1,pažymys2,...,pažymysN
@@ -61,11 +61,11 @@ Uzduotys:
             Maksimalus vidurkis: 9.60
             Minimalus vidurkis: 5.20
             Pažangių studentų (vidurkis ≥ 8): 14
-      ☐ 6. Papildomai balai
+      ✔ 6. Papildomai balai @done(25-11-22 23:39)
         už:
-          ☐ gražiai suformatuotą, aiškią, tvarkingą programos struktūrą,
-          ☐ komentarus,
-          ☐ aiškiai įvardytas funkcijas.
+          ✔ gražiai suformatuotą, aiškią, tvarkingą programos struktūrą, @done(25-11-22 23:39)
+          ✔ komentarus, @done(25-11-22 23:39)
+          ✔ aiškiai įvardytas funkcijas. @done(25-11-22 23:39)
   ☐ 2. E-PARDUOTUVĖS SANDĖLIO VALDYMAS.
     Reikia sukurti programą, kuri nuskaito failo prekes250.txt duomenis,
     generuoja atsitiktinį prekių kiekį (nuo 0 iki 200),
