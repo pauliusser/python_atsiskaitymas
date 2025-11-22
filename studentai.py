@@ -20,7 +20,7 @@ class Studentas:
 
 studentas1 = Studentas("Paulius", "Sermuksnis",[10,9,8,9,1,8,7,7,3,7,6,5,3,3,3,3,3])
 
-studentas1.__str__()
+print(studentas1)
 valVid = studentas1.validus_vidurkis()
 vid = studentas1.vidurkis()
 
