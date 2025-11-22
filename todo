@@ -25,28 +25,28 @@ Uzduotys:
         ✔ Nuskaityti visus 50 studentų į Studentas objektų sąrašą. @done(25-11-22 15:10)
         ✔ Patikrinti, ar visi pažymiai yra 1–10. @done(25-11-22 15:31)
         ✔ Netinkamų duomenų šiame atsiskaityme nėra — bet reikia numatyti struktūrą ir tvarkymą. @done(25-11-22 15:54)
-      ☐ 3. Studentų analizė
+      ✔ 3. Studentų analizė @done(25-11-22 18:26)
         Sukurti atskiras funkcijas, kurios:
           ✔ a. Surikiuoja studentus pagal vidurkį mažėjančia tvarka. @done(25-11-22 16:23)
             Studentai, kurių vidurkis None, į šią rikiuotę neįtraukiami.
           ✔ b. Grąžina studentų, turinčių mažiau nei 3 pažymius, sąrašą @done(25-11-22 17:12)
-          ☐ c. Apskaičiuoja bendrą grupės statistiką
+          ✔ c. Apskaičiuoja bendrą grupės statistiką @done(25-11-22 18:04)
             kuri susideda iš:
               ✔ bendrą visų vidurkių vidurkį, @done(25-11-22 17:47)
               ✔ medianą, @done(25-11-22 17:47)
               ✔ maksimalų vidurkį, @done(25-11-22 17:50)
               ✔ minimalų vidurkį (iš tų, kurie turi bent 3 pažymius), @done(25-11-22 17:53)
-              ☐ studentų skaičių, kurių vidurkis ≥ 8.
-      ☐ 4. Filtravimas ir rezultatų rinkimas
+              ✔ studentų skaičių, kurių vidurkis ≥ 8. @done(25-11-22 18:04)
+      ✔ 4. Filtravimas ir rezultatų rinkimas @done(25-11-22 18:46)
         Sukurti funkciją, kuri:
-          ☐ atrenka studentus, kurių vidurkis ≥ 8,
-          ☐ įrašo juos į naują CSV failą pazangus.csv.
+          ✔ atrenka studentus, kurių vidurkis ≥ 8, @done(25-11-22 18:36)
+          ✔ įrašo juos į naują CSV failą pazangus.csv. @done(25-11-22 18:46)
           Failo formatas;
           Vardas,Pavarde,Vidurkis
           Vidurkis pateikiamas tikslumu iki 2 skaitmenų po kablelio.
       ☐ 5. Ataskaitos generavimas
         Sukurti tekstinį failą ataskaita.txt, kuriame turi būti:
-          ☐ a. 10 geriausiai besimokančių studentų.
+          ✔ a. 10 geriausiai besimokančių studentų. @done(25-11-22 19:10)
             Formatas;
             1. Monika Petrauskaitė – 9.60
             2. Jonas Jonaitis – 8.75

@@ -23,58 +23,63 @@ class Studentas:
     return f"studentas: {self.vardas} {self.pavarde}\npažymiai:  {paz}"
 
 # MARK: csv f. nusk.
+def studFailoNusk():
+  studentai = []
 
-studentai = []
+  with open("./failai/studentai_lietuviski_INT.csv", newline="", encoding="utf-8") as studCsvFile:
+    reader = csv.DictReader(studCsvFile)
+    for row in reader:
+      vardas = row['Vardas']
+      pavarde = row['Pavarde']
+      pazymiai = []
+      for i in range(1,11):
+        p = row[f"paz{i}"]
+        if p != "":
+          pazymiai.append(int(p))
+      studentai.append(Studentas(vardas, pavarde, pazymiai))
 
-with open("./failai/studentai_lietuviski_INT.csv", newline="", encoding="windows 1257") as studCsvFile:
-  reader = csv.DictReader(studCsvFile)
-  for row in reader:
-    vardas = row['Vardas']
-    pavarde = row['Pavarde']
-    pazymiai = []
-    for i in range(1,11):
-      p = row[f"paz{i}"]
-      if p != "":
-        pazymiai.append(int(p))
-    studentai.append(Studentas(vardas, pavarde, pazymiai))
+  for st in studentai:
+    valid = True
+    for p in st.pazymiai:
+      if p < 1 or p > 10:
+        valid = False
+        break
+    if not valid: print(f"klaida, studento {st.vardas} {st.pavarde} ne visi pažymiai yra 1-10 diapozone")
+  return studentai
 
-# for st in studentai:
-#   print(st)
-#   print("")
-
-for st in studentai:
-  valid = True
-  for p in st.pazymiai:
-    if p < 1 or p > 10:
-      valid = False
-      break
-  if not valid: print(f"klaida, studento {st.vardas} {st.pavarde} ne visi pažymiai yra 1-10 diapozone")
+studentai = studFailoNusk()
 
 # MARK: st. analize
 
-def vidurkiuRikiuote():
+def vidurkiuRikiuote(studentai):
   beSkolu = list(filter(lambda s: s.vidurkis() != None, studentai ))
   print(f"visi studentai: {len(studentai)}\nstudentai su tinkamu paž. sk.: {len(beSkolu)}\n")
   beSkolu.sort(key=lambda s: s.vidurkis(), reverse=True)
-  i = 1
-  for s in beSkolu:
-    print(i)
-    print(s)
-    print(f"vidurkis: {s.vidurkis()}\n")
-    i += 1
+  return beSkolu
 
-# vidurkiuRikiuote()
+def prntVidurkiuRikiuote(st):
+    i = 1
+    for s in vidurkiuRikiuote(st):
+      print(i)
+      print(s)
+      print(f"vidurkis: {s.vidurkis()}\n")
+      i += 1
 
-def skolininkuSarasas():
-  skolininkai = list(filter(lambda s: s.vidurkis() == None, studentai ))
+prntVidurkiuRikiuote(studentai)
+
+def skolininkuSarasas(studentai):
+  return [s for s in studentai if s.vidurkis() is None]
+
+def prntSkolininkuSarasas(st):
+  skolininkai = skolininkuSarasas(st)
   print(f"skolininkų sąraše yra {len(skolininkai)} studentai:\n")
   for s in skolininkai:
     print(s)
     print("")
 
-# skolininkuSarasas()
+prntSkolininkuSarasas(studentai)
 
-def grupesStat():
+def grupesStat(studentai):
   # bendras vidurkis
   beSkolu = list(filter(lambda s: s.vidurkis() != None, studentai ))
   vidurkiai = [s.vidurkis() for s in beSkolu]
@@ -94,8 +99,73 @@ def grupesStat():
   minVidurkis = round(min(vidurkiai), 2)
 
   # studentų skaičius kurių vidurkis ≥ 8
-  pazangiujuSk = sum([v >= 8 for v in vidurkiai])
+  pazangiujuSk = sum(v >= 8 for v in vidurkiai) # arba: sum(1 for v in vidurkiai if v >= 8)
+  stat = dict(
+    bendrasVid=bendrasVid,
+    mediana=mediana,
+    maxVidurkis=maxVidurkis,
+    minVidurkis=minVidurkis,
+    pazangiujuSk=pazangiujuSk
+    )
 
-  print(f"bendras vidurkių vidurkis: {bendrasVid}\nklasės pažimių mediana: {mediana}\ndidziausias vidurkis: {maxVidurkis}\nmažiausias vidurkis {minVidurkis}\nstudentų skaičius kurių vidurkis ≥ 8 yra: {pazangiujuSk}")
+  return stat
 
-grupesStat()
+def prntGrupesStat(st):
+  stat = grupesStat(st)
+  print(f"""
+grupės statistika:
+bendras vidurkių vidurkis: {stat["bendrasVid"]}
+klasės pažimių mediana: {stat["mediana"]}
+didziausias vidurkis: {stat["maxVidurkis"]}
+mažiausias vidurkis {stat["minVidurkis"]}
+studentų skaičius kurių vidurkis ≥ 8 yra: {stat["pazangiujuSk"]}""")
+
+prntGrupesStat(studentai)
+
+# MARK: filtr ir rez
+
+def pazangiujuFailas(studentai):
+  beSkolu = list(filter(lambda s: s.vidurkis() != None, studentai ))
+  pazangieji = list(filter(lambda s: s.vidurkis() >= 8, beSkolu ))
+  with open("./failai/pazangus.csv", "w", newline="", encoding="UTF-8") as file:
+    antrastes = ["Vardas", "Pavarde", "Vidurkis"]
+    writer = csv.DictWriter(file, fieldnames=antrastes)
+    writer.writeheader()
+
+    for st in pazangieji:
+      writer.writerow({
+        "Vardas": st.vardas,
+        "Pavarde": st.pavarde,
+        "Vidurkis": st.vidurkis()
+      })
+pazangiujuFailas(studentai)
+
+# MARK: ataksaita
+
+def ataskaita(studentai):
+  with open("./failai/ataskaita.txt", "w", encoding="utf-8") as ataskaita:
+
+    ataskaita.write("ATASKAITA\n\n")
+
+    # 10 geriausiai besimokanciu studentu
+    ataskaita.write("10 pažangiausiųjų studentų:\n\n")
+    nr = 1
+    for st in vidurkiuRikiuote(studentai)[:10]:
+      ataskaita.write(f"{nr}. {st.vardas} {st.pavarde} - {st.vidurkis()}\n")
+      nr += 1
+    
+    # studentai kurių vidurkis neskaičiuojamas
+    ataskaita.write("\nstudentai kurių vidurkis neskaičiuojamas:\n\n")
+    for st in skolininkuSarasas(studentai):
+      ataskaita.write(f"{st.vardas} {st.pavarde} - vidurkis neskaičiuojamas (trūksta {3 - len(st.pazymiai)} pažimių(o))\n")
+    
+    #grupės statistika
+    stat = grupesStat(studentai)
+    ataskaita.write("\ngrupės statistika:\n\n")
+    ataskaita.write(f"bendras vidurkių vidurkis: {stat['bendrasVid']}\n")
+    ataskaita.write(f"klasės pažimių mediana: {stat['mediana']}\n")
+    ataskaita.write(f"didziausias vidurkis: {stat['maxVidurkis']}\n")
+    ataskaita.write(f"mažiausias vidurkis {stat['minVidurkis']}\n")
+    ataskaita.write(f"studentų skaičius kurių vidurkis ≥ 8 yra: {stat['pazangiujuSk']}\n")
+
+ataskaita(studentai)
