@@ -20,22 +20,22 @@ Uzduotys:
             Jei pažymių ≥ 3 – grąžina pažymių vidurkį. Jei < 3 – grąžina None.
           ✔ __str__(). @done(25-11-22 13:54)
             Gražiam studento atspausdinimui
-      ☐ 2. CSV failo nuskaitymas:
+      ✔ 2. CSV failo nuskaitymas: @done(25-11-22 15:37)
       užduotys:
         ✔ Nuskaityti visus 50 studentų į Studentas objektų sąrašą. @done(25-11-22 15:10)
         ✔ Patikrinti, ar visi pažymiai yra 1–10. @done(25-11-22 15:31)
-        Netinkamų duomenų šiame atsiskaityme nėra — bet reikia numatyti struktūrą ir tvarkymą.
+        ✔ Netinkamų duomenų šiame atsiskaityme nėra — bet reikia numatyti struktūrą ir tvarkymą. @done(25-11-22 15:54)
       ☐ 3. Studentų analizė
         Sukurti atskiras funkcijas, kurios:
-          ☐ a. Surikiuoja studentus pagal vidurkį mažėjančia tvarka.
+          ✔ a. Surikiuoja studentus pagal vidurkį mažėjančia tvarka. @done(25-11-22 16:23)
             Studentai, kurių vidurkis None, į šią rikiuotę neįtraukiami.
-          ☐ b. Grąžina studentų, turinčių mažiau nei 3 pažymius, sąrašą
+          ✔ b. Grąžina studentų, turinčių mažiau nei 3 pažymius, sąrašą @done(25-11-22 17:12)
           ☐ c. Apskaičiuoja bendrą grupės statistiką
             kuri susideda iš:
-              ☐ bendrą visų vidurkių vidurkį,
-              ☐ medianą,
-              ☐ maksimalų vidurkį,
-              ☐ minimalų vidurkį (iš tų, kurie turi bent 3 pažymius),
+              ✔ bendrą visų vidurkių vidurkį, @done(25-11-22 17:47)
+              ✔ medianą, @done(25-11-22 17:47)
+              ✔ maksimalų vidurkį, @done(25-11-22 17:50)
+              ✔ minimalų vidurkį (iš tų, kurie turi bent 3 pažymius), @done(25-11-22 17:53)
               ☐ studentų skaičių, kurių vidurkis ≥ 8.
       ☐ 4. Filtravimas ir rezultatų rinkimas
         Sukurti funkciją, kuri:
