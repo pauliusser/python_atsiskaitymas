@@ -22,9 +22,9 @@ Uzduotys:
             Gražiam studento atspausdinimui
       ☐ 2. CSV failo nuskaitymas:
       užduotys:
-        ☐ Nuskaityti visus 50 studentų į Studentas objektų sąrašą.
-        ☐ Patikrinti, ar visi pažymiai yra 1–10.
-        ☐ Netinkamų duomenų šiame atsiskaityme nėra — bet reikia numatyti struktūrą ir tvarkymą.
+        ✔ Nuskaityti visus 50 studentų į Studentas objektų sąrašą. @done(25-11-22 15:10)
+        ✔ Patikrinti, ar visi pažymiai yra 1–10. @done(25-11-22 15:31)
+        Netinkamų duomenų šiame atsiskaityme nėra — bet reikia numatyti struktūrą ir tvarkymą.
       ☐ 3. Studentų analizė
         Sukurti atskiras funkcijas, kurios:
           ☐ a. Surikiuoja studentus pagal vidurkį mažėjančia tvarka.
