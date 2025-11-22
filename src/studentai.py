@@ -23,10 +23,10 @@ class Studentas:
     return f"studentas: {self.vardas} {self.pavarde}\npažymiai:  {paz}"
 
 # MARK: csv f. nusk.
-def studFailoNusk():
+def studNusk(path):
   studentai = []
 
-  with open("./failai/studentai_lietuviski_INT.csv", newline="", encoding="utf-8") as studCsvFile:
+  with open(path, newline="", encoding="utf-8") as studCsvFile:
     reader = csv.DictReader(studCsvFile)
     for row in reader:
       vardas = row['Vardas']
@@ -47,13 +47,10 @@ def studFailoNusk():
     if not valid: print(f"klaida, studento {st.vardas} {st.pavarde} ne visi pažymiai yra 1-10 diapozone")
   return studentai
 
-studentai = studFailoNusk()
-
 # MARK: st. analize
 
 def vidurkiuRikiuote(studentai):
   beSkolu = list(filter(lambda s: s.vidurkis() != None, studentai ))
-  print(f"visi studentai: {len(studentai)}\nstudentai su tinkamu paž. sk.: {len(beSkolu)}\n")
   beSkolu.sort(key=lambda s: s.vidurkis(), reverse=True)
   return beSkolu
 
@@ -65,8 +62,6 @@ def prntVidurkiuRikiuote(st):
       print(f"vidurkis: {s.vidurkis()}\n")
       i += 1
 
-prntVidurkiuRikiuote(studentai)
-
 def skolininkuSarasas(studentai):
   return [s for s in studentai if s.vidurkis() is None]
 
@@ -76,8 +71,6 @@ def prntSkolininkuSarasas(st):
   for s in skolininkai:
     print(s)
     print("")
-
-prntSkolininkuSarasas(studentai)
 
 def grupesStat(studentai):
   # bendras vidurkis
@@ -120,14 +113,12 @@ didziausias vidurkis: {stat["maxVidurkis"]}
 mažiausias vidurkis {stat["minVidurkis"]}
 studentų skaičius kurių vidurkis ≥ 8 yra: {stat["pazangiujuSk"]}""")
 
-prntGrupesStat(studentai)
-
 # MARK: filtr ir rez
 
-def pazangiujuFailas(studentai):
+def pazangiujuFailas( path, studentai):
   beSkolu = list(filter(lambda s: s.vidurkis() != None, studentai ))
   pazangieji = list(filter(lambda s: s.vidurkis() >= 8, beSkolu ))
-  with open("./failai/pazangus.csv", "w", newline="", encoding="UTF-8") as file:
+  with open(path, "w", newline="", encoding="UTF-8") as file:
     antrastes = ["Vardas", "Pavarde", "Vidurkis"]
     writer = csv.DictWriter(file, fieldnames=antrastes)
     writer.writeheader()
@@ -138,12 +129,11 @@ def pazangiujuFailas(studentai):
         "Pavarde": st.pavarde,
         "Vidurkis": st.vidurkis()
       })
-pazangiujuFailas(studentai)
 
 # MARK: ataksaita
 
-def ataskaita(studentai):
-  with open("./failai/ataskaita.txt", "w", encoding="utf-8") as ataskaita:
+def ataskaita(path, studentai):
+  with open(path, "w", encoding="utf-8") as ataskaita:
 
     ataskaita.write("ATASKAITA\n\n")
 
@@ -167,5 +157,3 @@ def ataskaita(studentai):
     ataskaita.write(f"didziausias vidurkis: {stat['maxVidurkis']}\n")
     ataskaita.write(f"mažiausias vidurkis {stat['minVidurkis']}\n")
     ataskaita.write(f"studentų skaičius kurių vidurkis ≥ 8 yra: {stat['pazangiujuSk']}\n")
-
-ataskaita(studentai)
