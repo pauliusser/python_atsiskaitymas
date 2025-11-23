@@ -67,22 +67,23 @@ Uzduotys:
           ✔ komentarus, @done(25-11-22 23:39)
           ✔ aiškiai įvardytas funkcijas. @done(25-11-22 23:39)
   ☐ 2. E-PARDUOTUVĖS SANDĖLIO VALDYMAS.
-    Reikia sukurti programą, kuri nuskaito failo prekes250.txt duomenis,
-    generuoja atsitiktinį prekių kiekį (nuo 0 iki 200),
-    sukuria prekės ID (pagal pateiktą taisyklę),
-    surašo viską į failą sandėlis.csv
-    ir leidžia atlikti duomenų analizę pagal pateiktus reikalavimus.
+    ☐ Reikia sukurti programą,
+    ✔ kuri nuskaito failo prekes250.txt duomenis, @done(25-11-23 22:16)
+    ☐ generuoja atsitiktinį prekių kiekį (nuo 0 iki 200),
+    ☐ sukuria prekės ID (pagal pateiktą taisyklę),
+    ☐ surašo viską į failą sandėlis.csv
+    ☐ ir leidžia atlikti duomenų analizę pagal pateiktus reikalavimus.
     ☐ 1. Duomenų generavimas
       ☐ Sugeneruoti failą sandelys.csv. 
         Kiekviena prekė turi:
         ☐ ID (pvz. PR12345). 
         Kiekvienos prekės ID sudaromas iš dviejų raidžių ir penkiaženklio skaičiaus.
         Jį sudaro 3 dalys:
-        ☐ o Dvi didžiosios raidės. 
+        ✔ o Dvi didžiosios raidės. @done(25-11-23 23:15)
           A – prekės pavadinimo pirmoji raidė (didžioji).
           B – kategorijos pirmoji raidė (didžioji).
           Pav. Kėdė  K, Baldai → B. Raidžių dalis: KB
-        ☐ o Kategorijos eilės numeris (1 skaitmuo).
+        ✔ o Kategorijos eilės numeris (1 skaitmuo). @done(25-11-23 23:15)
           Kategorijos sąrašas pirmiausia rūšiuojamas abėcėlės tvarka.
           Pagal jo vietą (1, 2, 3, …) priskiriamas kategorijos indeksas.
           Pav. surikiuotas sąrašas:
@@ -93,7 +94,7 @@ Uzduotys:
             5. .....
             Jei kategorija „Baldai“, jos eilės numeris yra 3.
             Taigi ID pradžioje po raidžių bus 3.
-        ☐ o Eilės numeris toje kategorijoje (4 skaitmenys)
+        ✔ o Eilės numeris toje kategorijoje (4 skaitmenys) @done(25-11-23 23:15)
             Kiekviena prekė savo kategorijoje gauna eilės numerį
             pirmoji prekė → 0001
             antroji → 0002
