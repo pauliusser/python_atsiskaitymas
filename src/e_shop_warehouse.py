@@ -82,14 +82,15 @@ def prekiuNuksaitymas(filepath):
 
   return prekes
 
-def analizuotiA (prkes):
-  brangiausiaPr = max(prkes, key=lambda p: p["kaina"])
+def analizuotiA (prekes):
+  brangiausiaPr = max(prekes, key=lambda p: p["kaina"])
   deficitinePr = min(prekes, key=lambda p: p["likutis"])
   kainuSum = sum([p["kaina"] * p["likutis"] for p in prekes])
   print(f"""
 brangiausia prekė: {brangiausiaPr["prekė"]} - {brangiausiaPr["kaina"]}eur.
 prekė su mažiausiu likučiu {deficitinePr["prekė"]} - {deficitinePr["likutis"]}vnt.
-sandėlyje liko prekių už: {kainuSum}eur.""")
+sandėlyje liko prekių už: {kainuSum}eur.
+""")
 
 def analizuotiB (prekes):
   kategorijos = sorted(set([p["kategorija"] for p in prekes]))
@@ -105,12 +106,13 @@ def analizuotiB (prekes):
 kategorijoje - {k}:
 skirtingų prekių kiekis: {preSum} prekės
 visų prekių bendras likutis: {likSum} vnt.
-vidutinė prekių kaina: {vidKain} eur.""")
+vidutinė prekių kaina: {vidKain} eur.
+""")
 
 def kurtiAtaskaita(prekes, filepath):
   top10brang = sorted(prekes, key=lambda p: p["kaina"], reverse=True)[:10]
   likSar = [p for p in prekes if p["likutis"] < 5]
-  sandVert = sum([p["kaina"] for p in prekes])
+  sandVert = sum([p["kaina"] * p["likutis"] for p in prekes])
 
   def drawHorLine():
     f.write("+" + "-" * 10 + "+" + "-" * 17 + "+" + "-" * 17 + "+" + "-" * 9 + "+" + "-" * 9 + "+\n")
@@ -133,9 +135,9 @@ def kurtiAtaskaita(prekes, filepath):
       drawTable(sortedLikSar)
     f.write(f"\nVisų sandėlio prekių vertė: {sandVert} eur.")
 
-data = duomenuNuskaitymas("./files/prekes250.txt")
-prekiuGeneravimas(data, "./files/sandėlis.csv")
-prekes = prekiuNuksaitymas("./files/sandėlis.csv")
+# data = duomenuNuskaitymas("./files/prekes250.txt")
+# prekiuGeneravimas(data, "./files/sandėlis.csv")
+# prekes = prekiuNuksaitymas("./files/sandėlis.csv")
 # analizuotiA(prekes)
 # analizuotiB(prekes)
-kurtiAtaskaita(prekes,"./files/sandelio_ataskaita.txt")
+# kurtiAtaskaita(prekes,"./files/sandelio_ataskaita.txt")

@@ -72,7 +72,7 @@ Uzduotys:
     ✔ generuoja atsitiktinį prekių kiekį (nuo 0 iki 200), @done(25-11-24 09:46)
     ✔ sukuria prekės ID (pagal pateiktą taisyklę), @done(25-11-24 09:46)
     ✔ surašo viską į failą sandėlis.csv @done(25-11-24 09:56)
-    ☐ ir leidžia atlikti duomenų analizę pagal pateiktus reikalavimus.
+    ✔ ir leidžia atlikti duomenų analizę pagal pateiktus reikalavimus. @done(25-11-24 14:18)
     ✔ 1. Duomenų generavimas @done(25-11-24 09:57)
       ✔ Sugeneruoti failą sandelys.csv. @done(25-11-24 09:56)
         Kiekviena prekė turi:
@@ -119,12 +119,12 @@ Uzduotys:
           ✔ visų prekių kiekį @done(25-11-24 12:51)
           ✔ bendrą likutį @done(25-11-24 12:51)
           ✔ vidutinę kainą @done(25-11-24 12:51)
-    ☐ 3. Generuoti failą ataskaita.txt
+    ✔ 3. Generuoti failą ataskaita.txt @done(25-11-24 14:18)
       Turinys:
         ✔ Top 10 brangiausių prekių @done(25-11-24 14:09)
         ✔ Mažiausių likučių sąrašas (likutis < 5) @done(25-11-24 14:09)
         ✔ Kategorijų analizė lentelės forma @done(25-11-24 14:09)
-        ☐ Sandėlio vertė
+        ✔ Sandėlio vertė @done(25-11-24 14:18)
   ☐ 3. METEOROLOGINIŲ DUOMENŲ ANALIZĖ.
   Jums pateikiamas failas meteo365_no_date.txt,
   kuriame yra 365 meteorologinių stebėjimų įrašai – po vieną kiekvienai metų dienai.
