@@ -85,11 +85,11 @@ def prekiuNuksaitymas(filepath):
 def analizuotiA (prekes):
   brangiausiaPr = max(prekes, key=lambda p: p["kaina"])
   deficitinePr = min(prekes, key=lambda p: p["likutis"])
-  kainuSum = sum([p["kaina"] * p["likutis"] for p in prekes])
+  kainuSum = round(sum([p["kaina"] * p["likutis"] for p in prekes]), 2)
   print(f"""
-brangiausia prekė: {brangiausiaPr["prekė"]} - {brangiausiaPr["kaina"]}eur.
-prekė su mažiausiu likučiu {deficitinePr["prekė"]} - {deficitinePr["likutis"]}vnt.
-sandėlyje liko prekių už: {kainuSum}eur.
+brangiausia prekė: {brangiausiaPr["prekė"]} - {brangiausiaPr["kaina"]} eur.
+prekė su mažiausiu likučiu {deficitinePr["prekė"]} - {deficitinePr["likutis"]} vnt.
+sandėlyje liko prekių už: {kainuSum} eur.
 """)
 
 def analizuotiB (prekes):
