@@ -14,7 +14,7 @@ def main():
     mainMenu()
     inp = input("pasirinkite programą: ")
     match inp:
-      # MARK: stidemtai
+      # MARK: studentai
       case"1":
         pazangusOut = "./output_files/pazangus.csv"
         ataskaitaOut = "./output_files/ataskaita.txt"
@@ -37,7 +37,7 @@ def main():
             case "3": # grupes statistika
               st.prntGrupesStat(stList)
               
-            case "4": # ukurti pažangių studentų sarašą 'pazangus.csv'
+            case "4": # sukurti pažangių studentų sarašą 'pazangus.csv'
               st.pazangiujuFailas(pazangusOut, stList)
               print(f'pažangių studentų sarašas sukurtas {pazangusOut}')
               
@@ -53,8 +53,9 @@ def main():
               print("neteisingas pasirinkimas")
 
           input("paspauskite enter")
+
+      # MARK: eshop
       case"2":
-        # MARK: eshop
         exitEShop = False
         isval()
         print("e-parduotuvės sandėlio valdymas:")
@@ -120,13 +121,15 @@ def main():
 
             case _: # klaidos atvejis eshop programoje
               print("neteisingas pasirinkimas")
-
-      case"x": # išėjimas iš programos
+      
+      # MARK: išėjimas
+      case"x": 
         exit = True
         isval()
         print("pabaiga")
-
-      case _: # klaidos atvjeis pagrindiniame meniu
+      
+      # klaidos atvejis pagrindiniame meniu
+      case _: 
         print("neteisingas pasirinkimas")
 
 if __name__ == "__main__":

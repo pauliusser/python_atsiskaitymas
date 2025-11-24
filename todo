@@ -142,14 +142,14 @@ Uzduotys:
     Vėjas – vėjo stiprumas (m/s)
   ☐ 1. Duomenų nuskaitymas
     Parašykite programą, kuri:
-      ☐ nuskaito failą į atmintį;
-      ☐ kiekvieną įrašą paverčia žodynu arba objektu;
-      ☐ paverčia dienos numerį į tikrą datą naudojant datetime modulį
+      ✔ nuskaito failą į atmintį; @done(25-11-24 22:09)
+      ✔ kiekvieną įrašą paverčia žodynu arba objektu; @done(25-11-24 22:09)
+      ✔ paverčia dienos numerį į tikrą datą naudojant datetime modulį @done(25-11-24 22:09)
     (laikykite, kad visi duomenys yra 2023 metų)
     prie kiekvieno įrašo prideda:
-      ☐ savaitės dieną (pvz., „Pirmadienis“),
-      ☐ mėnesį,
-      ☐ metų laiką („Žiema“, „Pavasaris“, „Vasara“, „Ruduo“).
+      ✔ savaitės dieną (pvz., „Pirmadienis“), @done(25-11-24 22:09)
+      ✔ mėnesį, @done(25-11-24 22:09)
+      ✔ metų laiką („Žiema“, „Pavasaris“, „Vasara“, „Ruduo“). @done(25-11-24 22:09)
     
     kiekviena diena gali būti išsaugota formatu Pvz:
       Diena: 74
@@ -162,14 +162,14 @@ Uzduotys:
       Vėjas: 4.5 m/s
       Arba
       74;2023 03 15;Trečiadienis;Kovas;Pavasaris;-1.7°C;6.2 mm;4.5 m/s
-  ☐ 2. Bendroji temperatūrų statistika bendra_statistika.txt
+  ✔ 2. Bendroji temperatūrų statistika bendra_statistika.txt @done(25-11-24 23:03)
     Apskaičiuokite:
-      ☐ metų vidutinę temperatūrą
-      ☐ temperatūros medianą
-      ☐ karščiausią dieną (data + savaitės diena + temperatūra)
-      ☐ šalčiausią dieną (data + savaitės diena + temperatūra)
-      ☐ dienų skaičių, kai temperatūra buvo > +25°C
-      ☐ dienų skaičių, kai temperatūra buvo < –10°C
+      ✔ metų vidutinę temperatūrą @done(25-11-24 23:03)
+      ✔ temperatūros medianą @done(25-11-24 23:03)
+      ✔ karščiausią dieną (data + savaitės diena + temperatūra) @done(25-11-24 23:03)
+      ✔ šalčiausią dieną (data + savaitės diena + temperatūra) @done(25-11-24 23:03)
+      ✔ dienų skaičių, kai temperatūra buvo > +25°C @done(25-11-24 23:03)
+      ✔ dienų skaičių, kai temperatūra buvo < –10°C @done(25-11-24 23:03)
   ☐ 3. Kritulių analizė krituliai.txt
     Sudarykite kritulių histogramą (tekstinę), pvz.:
     0–5 mm ___██████████████████████████████████████████████ ___(242 d.)

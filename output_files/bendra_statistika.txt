@@ -1,0 +1,8 @@
+2023 metų temperatūrų statistika:
+
+metų vidutinė tepmeratūra: 8.39 °C
+metų tepmeratūros mediana: 8.6 °C
+karščiausia diena: 2023-07-31 pirmadienis 30.0 °C
+šalčiausia diena: 2023-02-10 penktadienis -14.8 °C
+dienų skaičius, kai temperatūra buvo > +25°C: 28
+dienų skaičius, kai temperatūra buvo < –10°C: 20
