@@ -69,14 +69,14 @@ Uzduotys:
   ☐ 2. E-PARDUOTUVĖS SANDĖLIO VALDYMAS.
     ☐ Reikia sukurti programą,
     ✔ kuri nuskaito failo prekes250.txt duomenis, @done(25-11-23 22:16)
-    ☐ generuoja atsitiktinį prekių kiekį (nuo 0 iki 200),
-    ☐ sukuria prekės ID (pagal pateiktą taisyklę),
-    ☐ surašo viską į failą sandėlis.csv
+    ✔ generuoja atsitiktinį prekių kiekį (nuo 0 iki 200), @done(25-11-24 09:46)
+    ✔ sukuria prekės ID (pagal pateiktą taisyklę), @done(25-11-24 09:46)
+    ✔ surašo viską į failą sandėlis.csv @done(25-11-24 09:56)
     ☐ ir leidžia atlikti duomenų analizę pagal pateiktus reikalavimus.
-    ☐ 1. Duomenų generavimas
-      ☐ Sugeneruoti failą sandelys.csv. 
+    ✔ 1. Duomenų generavimas @done(25-11-24 09:57)
+      ✔ Sugeneruoti failą sandelys.csv. @done(25-11-24 09:56)
         Kiekviena prekė turi:
-        ☐ ID (pvz. PR12345). 
+        ✔ ID (pvz. PR12345). @done(25-11-24 09:56)
         Kiekvienos prekės ID sudaromas iš dviejų raidžių ir penkiaženklio skaičiaus.
         Jį sudaro 3 dalys:
         ✔ o Dvi didžiosios raidės. @done(25-11-23 23:15)
@@ -101,29 +101,29 @@ Uzduotys:
             ...
             25-oji → 0025
             Tai keturių skaitmenų formatas su nuliais pradžioje.
-          ☐ Kategoriją („Elektronika“, „Buitis“, „Sportas“, …)
-          ☐ Kainą (0.99–999.99)
-          ☐ Likutį (0–200)
+          ✔ Kategoriją („Elektronika“, „Buitis“, „Sportas“, …) @done(25-11-24 09:44)
+          ✔ Kainą (0.99–999.99) @done(25-11-24 09:44)
+          ✔ Likutį (0–200) @done(25-11-24 09:44)
         Pavyzdys:
           PR10291,Monitorius,Elektronika,129.99,12
           PR20011,Kėdė,Baldai,49.99,3
-    ☐ 2. Analizės funkcijos
-      ☐ a.
+    ✔ 2. Analizės funkcijos @done(25-11-24 12:59)
+      ✔ a. @done(25-11-24 10:57)
         Rasti:
-          ☐ brangiausią prekę
-          ☐ mažiausią likutį turinčią prekę
-          ☐ sandėlio bendrą vertę
-      ☐ b. 
+          ✔ brangiausią prekę @done(25-11-24 10:53)
+          ✔ mažiausią likutį turinčią prekę @done(25-11-24 10:54)
+          ✔ sandėlio bendrą vertę @done(25-11-24 10:57)
+      ✔ b. @done(25-11-24 12:59)
         Pagal kategoriją surasti:
         (vartotojas įveda (pasirenka) norimą prekių kategoriją)
-          ☐ visų prekių kiekį
-          ☐ bendrą likutį
-          ☐ vidutinę kainą
+          ✔ visų prekių kiekį @done(25-11-24 12:51)
+          ✔ bendrą likutį @done(25-11-24 12:51)
+          ✔ vidutinę kainą @done(25-11-24 12:51)
     ☐ 3. Generuoti failą ataskaita.txt
       Turinys:
-        ☐ Top 10 brangiausių prekių
-        ☐ Mažiausių likučių sąrašas (likutis < 5)
-        ☐ Kategorijų analizė lentelės forma
+        ✔ Top 10 brangiausių prekių @done(25-11-24 14:09)
+        ✔ Mažiausių likučių sąrašas (likutis < 5) @done(25-11-24 14:09)
+        ✔ Kategorijų analizė lentelės forma @done(25-11-24 14:09)
         ☐ Sandėlio vertė
   ☐ 3. METEOROLOGINIŲ DUOMENŲ ANALIZĖ.
   Jums pateikiamas failas meteo365_no_date.txt,
