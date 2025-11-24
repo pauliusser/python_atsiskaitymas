@@ -16,7 +16,9 @@ def main():
     match inp:
       # MARK: stidemtai
       case"1":
-        stList = st.studNusk("./files/studentai_lietuviski_INT.csv")
+        pazangusOut = "./output_files/pazangus.csv"
+        ataskaitaOut = "./output_files/ataskaita.txt"
+        stList = st.studNusk("./input_files/studentai_lietuviski_INT.csv")
         exitStud = False
         isval()
         print("Studentų analizė:")
@@ -28,23 +30,28 @@ def main():
           match anOption:
             case "1": # išrikiuoti studentų duomenis pagal vidurkį
               st.prntVidurkiuRikiuote(stList)
+
             case "2": # skolininkų sąrašas
               st.prntSkolininkuSarasas(stList)
+
             case "3": # grupes statistika
               st.prntGrupesStat(stList)
+              
             case "4": # ukurti pažangių studentų sarašą 'pazangus.csv'
-              filePath = "./files/pazangus.csv"
-              st.pazangiujuFailas(filePath, stList)
-              print(f'pažangių studentų sarašas sukurtas {filePath} ')
+              st.pazangiujuFailas(pazangusOut, stList)
+              print(f'pažangių studentų sarašas sukurtas {pazangusOut}')
+              
             case "5": # sukurti grupės duomenų ataskaitą 'ataskaita.txt'
-              filePath = "./files/ataskaita.txt"
-              st.ataskaita("./files/ataskaita.txt", stList)
-              print(f'grupės duomenų ataskaita sukurta {filePath} ')
+              st.ataskaita(ataskaitaOut, stList)
+              print(f'grupės duomenų ataskaita sukurta {ataskaitaOut}')
+
             case "x": # grįžti
               isval()
               exitStud = True
+
             case _: # klaidos atvejis
               print("neteisingas pasirinkimas")
+
           input("paspauskite enter")
       case"2":
         # MARK: eshop
@@ -53,9 +60,9 @@ def main():
         print("e-parduotuvės sandėlio valdymas:")
         data = []
         prekes = []
-        dataDir = "./files/prekes250.txt"
-        sarasoDir = "./files/sandėlis.csv"
-        ataskDir = "./files/sandelio_ataskaita.txt" 
+        dataDir = "./input_files/prekes250.txt"
+        sarasoDir = "./input_files/sandėlis.csv"
+        ataskDir = "./input_files/sandelio_ataskaita.txt" 
         file_path = Path(sarasoDir)         
         while not(exitEShop):
           if len(data) == 0:
@@ -71,6 +78,7 @@ def main():
               eShop.prekiuGeneravimas(data, sarasoDir)
               prekes = eShop.prekiuNuksaitymas(sarasoDir)
               print(f'prekių sąrašas sugeneruotas "{sarasoDir}"\nir prekės nuskaitytos')
+              
             case "2": # prekių analizė
               if not(file_path.exists()):
                 print(f'failas {sarasoDir} neegzistuoja, pirma sugeneruokite sąrašą\n')
@@ -85,13 +93,17 @@ def main():
                     case "1": # sandėlio statistika
                       eShop.analizuotiA(prekes)
                       input("paspauskite enter")
+
                     case "2": # analizuoti kategorijas
                       eShop.analizuotiB(prekes)
                       input("paspauskite enter")
+
                     case "x": # grįžti
                       exitAnalize = True
+                      
                     case _: # klaidos atvejis
                       print("neteisingas pasirinkimas")
+
             case "3": # kurti ataskaitą txt faile
               if not(file_path.exists()): # patikrinama ar duomenu failas egzistuoja
                 print(f'failas {sarasoDir} neegzistuoja, pirma sugeneruokite sąrašą\n')
@@ -101,16 +113,21 @@ def main():
                 eShop.kurtiAtaskaita(prekes, ataskDir)
                 print(f'ataskaita "{ataskDir}" sugeneruota')
                 input("paspauskite enter")
+
             case "x": # išėjimas iš eshop programos
               isval()
               exitEShop = True
+
             case _: # klaidos atvejis eshop programoje
               print("neteisingas pasirinkimas")
+
       case"x": # išėjimas iš programos
         exit = True
+        isval()
+        print("pabaiga")
+
       case _: # klaidos atvjeis pagrindiniame meniu
         print("neteisingas pasirinkimas")
-  isval()
-  print("pabaiga")
+
 if __name__ == "__main__":
   main()
