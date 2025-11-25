@@ -125,7 +125,7 @@ Uzduotys:
         ✔ Mažiausių likučių sąrašas (likutis < 5) @done(25-11-24 14:09)
         ✔ Kategorijų analizė lentelės forma @done(25-11-24 14:09)
         ✔ Sandėlio vertė @done(25-11-24 14:18)
-  ☐ 3. METEOROLOGINIŲ DUOMENŲ ANALIZĖ.
+  ✔ 3. METEOROLOGINIŲ DUOMENŲ ANALIZĖ. @done(25-11-25 02:36)
   Jums pateikiamas failas meteo365_no_date.txt,
   kuriame yra 365 meteorologinių stebėjimų įrašai – po vieną kiekvienai metų dienai.
   Kiekviena eilutė turi
@@ -140,7 +140,7 @@ Uzduotys:
     Temperatūra – oro temperatūra (°C)
     Krituliai – kritulių kiekis (mm)
     Vėjas – vėjo stiprumas (m/s)
-  ☐ 1. Duomenų nuskaitymas
+  ✔ 1. Duomenų nuskaitymas @done(25-11-25 02:36)
     Parašykite programą, kuri:
       ✔ nuskaito failą į atmintį; @done(25-11-24 22:09)
       ✔ kiekvieną įrašą paverčia žodynu arba objektu; @done(25-11-24 22:09)
@@ -199,16 +199,16 @@ Uzduotys:
       Min temp: 4.1°C
       Krituliai: 65.3 mm
       Vėjas: 4.5 m/s
-  ☐ 6. Metų laikų statistika metai.txt
+  ✔ 6. Metų laikų statistika metai.txt @done(25-11-25 02:37)
     Pagal datas automatiškai priskirkite metų laiką:
-      ☐ Žiema: gruodis–vasaris
-      ☐ Pavasaris: kovas–gegužė
-      ☐ Vasara: birželis–rugpjūtis
-      ☐ Ruduo: rugsėjis–lapkritis
+      ✔ Žiema: gruodis–vasaris @done(25-11-25 02:37)
+      ✔ Pavasaris: kovas–gegužė @done(25-11-25 02:37)
+      ✔ Vasara: birželis–rugpjūtis @done(25-11-25 02:37)
+      ✔ Ruduo: rugsėjis–lapkritis @done(25-11-25 02:37)
     Apskaičiuokite metų laikotarpio:
-      ☐ vidutinę temperatūrą,
-      ☐ kritulių sumą,
-      ☐ vėjo vidurkį.
-      ☐ Šalčiausia laikotarpio diena (pateikiami visi dienos duomenys)
-      ☐ Šilčiausia laikotarpio diena (pateikiami visi dienos duomenys)
-      ☐ Dieną, kada iškrito daugiausiai kritulių
+      ✔ vidutinę temperatūrą, @done(25-11-25 02:37)
+      ✔ kritulių sumą, @done(25-11-25 02:37)
+      ✔ vėjo vidurkį. @done(25-11-25 02:37)
+      ✔ Šalčiausia laikotarpio diena (pateikiami visi dienos duomenys) @done(25-11-25 02:37)
+      ✔ Šilčiausia laikotarpio diena (pateikiami visi dienos duomenys) @done(25-11-25 02:37)
+      ✔ Dieną, kada iškrito daugiausiai kritulių @done(25-11-25 02:37)
