@@ -7,3 +7,4 @@ output_files/menesiai.txt
 output_files/metai.txt
 output_files/pazangus.csv
 output_files/sandelis.csv
+src/__pycache__/
