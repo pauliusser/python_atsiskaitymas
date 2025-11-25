@@ -1,6 +1,7 @@
 from src import studentai as st
 from src import e_shop_warehouse as eShop
-from src.menu import mainMenu, stOptionsMenu, eShopOptionsMenu
+from src import meteorologine_analize as met
+from src.menu import mainMenu, stOptionsMenu, eShopOptionsMenu, metOptionsMenu
 from pathlib import Path
 import os
 
@@ -62,9 +63,9 @@ def main():
         data = []
         prekes = []
         dataDir = "./input_files/prekes250.txt"
-        sarasoDir = "./input_files/sandėlis.csv"
-        ataskDir = "./input_files/sandelio_ataskaita.txt" 
-        file_path = Path(sarasoDir)         
+        sarasoDir = "./output_files/sandelis.csv"
+        ataskDir = "./output_files/sandelio_ataskaita.txt" 
+        file_path = Path(sarasoDir) # cia tam kad po to butu galima patikrinti ar failas egzistuoja
         while not(exitEShop):
           if len(data) == 0:
             input(f'paspauskite enter, kad nuskaitytumėte duomenis iš "{dataDir}"')
@@ -79,10 +80,12 @@ def main():
               eShop.prekiuGeneravimas(data, sarasoDir)
               prekes = eShop.prekiuNuksaitymas(sarasoDir)
               print(f'prekių sąrašas sugeneruotas "{sarasoDir}"\nir prekės nuskaitytos')
+              input("paspauskite enter")
               
             case "2": # prekių analizė
               if not(file_path.exists()):
                 print(f'failas {sarasoDir} neegzistuoja, pirma sugeneruokite sąrašą\n')
+                input("paspauskite enter")
               else:
                 if  len(prekes) == 0:
                   prekes = eShop.prekiuNuksaitymas(sarasoDir)
@@ -108,6 +111,7 @@ def main():
             case "3": # kurti ataskaitą txt faile
               if not(file_path.exists()): # patikrinama ar duomenu failas egzistuoja
                 print(f'failas {sarasoDir} neegzistuoja, pirma sugeneruokite sąrašą\n')
+                input("paspauskite enter")
               else:
                 if  len(prekes) == 0:
                   prekes = eShop.prekiuNuksaitymas(sarasoDir)
@@ -122,6 +126,68 @@ def main():
             case _: # klaidos atvejis eshop programoje
               print("neteisingas pasirinkimas")
       
+      # MARK: meteo
+      case"3":
+        exitMet = False
+        matavimai = None
+        isval()
+        print("meteorologinių duomenų analizė:")
+        inpMetDPath = "./input_files/meteo365_no_date.txt"
+        outBendStPath = "./output_files/bendra_statistika.txt"
+        outKrAnPath = "./output_files/krituliai.txt"
+        outEkstDPath = "./output_files/audra.txt"
+        outMenStPath = "./output_files/menesiai.txt"
+        outSezAtPath = "./output_files/metai.txt"
+        while not(exitMet):
+          if matavimai == None:
+            input(f'paspauskite enter, kad nuskaitytumėte duomenis iš "{inpMetDPath}"')
+            matavimai = met.duomenuNuskaitymas("./input_files/meteo365_no_date.txt")
+            print(f'meteorologiniai duomenys iš: "{inpMetDPath}" nuskaityti')
+          print("\n\n---pasirinkimai---")
+          metOptionsMenu()
+          metOpt = input("pasirinkite veiksmą: ")
+          print("")
+          match metOpt:
+            case "1": # isspausdina pasirinktos dienos duomenis
+              diena = input("pasirinkite sk. dienai nuo 1 iki 365: ")
+              if not(diena.isdigit()): print("klaida - tai turi būti skaičius nuo 1 iki 365")
+              elif 1 > int(diena) > 365: print("klaida - tai turi būti skaičius nuo 1 iki 365")
+              else:
+                met.isspausdintiDiena(int(diena), matavimai)
+                input("paspauskite enter")
+
+            case "2": # bendra statistika
+              met.bendraStatistika(outBendStPath, matavimai)
+              print(f"sukurta bendra metinė oro salygų statistika ir išsaugota į {outBendStPath}")
+              input("paspauskite enter")
+            
+            case "3": # krituliu analize
+              met.krituliuAnalize(outKrAnPath, matavimai)
+              print(f"sukurta kritulių statistika ir išsaugota į {outKrAnPath}")
+              input("paspauskite enter")
+            
+            case "4": # ekstremalios dienos
+              met.ekstremaliosDienos(outEkstDPath, matavimai)
+              print(f"sukurta ekstremalaus oro statistika ir išsaugota į {outEkstDPath}")
+              input("paspauskite enter")
+            
+            case "5": # menesine oro salygu statistika
+              met.menesiuStatistika(outMenStPath, matavimai)
+              print(f"sukurta menesine oro salygu statistika ir išsaugota į {outMenStPath}")
+              input("paspauskite enter")
+            
+            case "6": # sezonine oro salygu statistika
+              met.metuLaikuStatistika(outSezAtPath, matavimai)
+              print(f"sukurta sezonine oro salygu statistika ir išsaugota į {outMenStPath}")
+              input("paspauskite enter")
+            
+            case "x": # isejimas is meteo programos
+              isval()
+              exitMet = True
+
+            case _: # klaidos atvejis meteo programoje
+              print("neteisingas pasirinkimas")
+
       # MARK: išėjimas
       case"x": 
         exit = True

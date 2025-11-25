@@ -38,6 +38,13 @@ class Matavimas:
     self.temperatura = [float(temperatura), temperatura + " °C"]
     self.krituliai = [float(krituliai), krituliai + " mm"]
     self.vejas = [float(vejas), vejas + " m/s"]
+
+  def menesiai():
+    return ["sausis","vasaris","kovas","balandis","gegužė","birželis","liepa","rubpjūtis","rugsėjis","spalis","lapkritis","gruodis"]
+
+  def metuLaikai():
+    return ["pavasaris","vasara","ruduo","žiema"]
+
   def __str__(self):
     return f"""
 Diena: {self.diena[1]}
@@ -86,13 +93,62 @@ def krituliuAnalize(filepath, matavimai):
     f.write("2023 metų kritulių statistika:\n\n")
     for i, s in enumerate(krDienuSk):
       f.write(f"{diapozonas[i]:>5} mm {"█" * int(s / max(krDienuSk) * 50):<50} ({s} d.)\n")
-    
 
+def ekstremaliosDienos(filepath, matavimai):
+  audros = [m for m in matavimai if m.vejas[0] >= 15 and m.krituliai[0] >= 10]
+  with open(filepath, "w", encoding="utf-8") as f:
+    f.write("2023 metais kilusios audros:\n\n")
+    for a in audros:
+      f.write(f"{a.data} {"(" + a.savaitesDiena :>17}) - AUDRA: krituliai {a.krituliai[1] :<4}, vėjas {a.vejas[1] :<4}\n")
 
+def menesiuStatistika(filepath, matavimai):
+  menesiai = Matavimas.menesiai()
+  with open(filepath, "w", encoding="utf-8") as f:
+    f.write("2023 metų mėnesinė oro sąlygų ataskaita:\n")
+    for men in menesiai:
+      tempList = [m.temperatura[0] for m in matavimai if m.menuo == men]
+      kritList = [m.krituliai[0] for m in matavimai if m.menuo == men]
+      vejoList = [m.vejas[0] for m in matavimai if m.menuo == men]
+      f.write(f"\n{men.upper()}:\n")
+      f.write(f"Vid. temperatūra: {round(sum(tempList) / len(tempList), 1)} °C\n")
+      f.write(f"Max temp:         {max(tempList)} °C\n")
+      f.write(f"Min temp:         {min(tempList)} °C\n")
+      f.write(f"Viso kritulių:    {round(sum(kritList), 1)} mm\n")
+      f.write(f"Vid. vėjas:       {round(sum(vejoList) / len(vejoList), 1)} m/s\n")
 
-matavimai = duomenuNuskaitymas("./input_files/meteo365_no_date.txt")
-bendraStatistika("./output_files/bendra_statistika.txt", matavimai)
-krituliuAnalize("./output_files/krituliai.txt", matavimai)
+def metuLaikuStatistika(filepath, matavimai):
+  metuLaikai = Matavimas.metuLaikai()
+  with open(filepath, "w", encoding="utf-8") as f:
+    f.write("2023 metų sezoninė oro sąlygų ataskaita:\n")
+    for ml in metuLaikai:
+      mlMatav = [m for m in matavimai if m.metuLaikas == ml]
+      tempList = [m.temperatura[0] for m in matavimai if m.metuLaikas == ml]
+      kritList = [m.krituliai[0] for m in matavimai if m.metuLaikas == ml]
+      vejoList = [m.vejas[0] for m in matavimai if m.metuLaikas == ml]
+      minTempDiena = min(mlMatav, key=lambda m: m.temperatura[0])
+      maxTempDiena = max(mlMatav, key=lambda m: m.temperatura[0])
+      maxKritDiena = max(mlMatav, key=lambda m: m.krituliai[0])
+      f.write(f"\n=== {ml.upper()} ===\n")
+      f.write(f"Vid. temperatūra: {round(sum(tempList) / len(tempList), 1)} °C\n")
+      f.write(f"Viso kritulių:    {round(sum(kritList), 1)} mm\n")
+      f.write(f"Vid. vėjas:       {round(sum(vejoList) / len(vejoList), 1)} m/s\n")
+      f.write(f"\n-- šalčiausia diena --{str(minTempDiena)}\n")
+      f.write(f"\n-- šilčiausia diena --{str(maxTempDiena)}\n")
+      f.write(f"\n-- daugiausia krit. diena --{str(maxKritDiena)}\n\n")
+
+def isspausdintiDiena(diena, matavimai):
+  if 0 > diena > 365:
+    print ("metuose tokios dienos nėra")
+  else:
+    print (matavimai[diena - 1])
+
+# matavimai = duomenuNuskaitymas("./input_files/meteo365_no_date.txt")
+# isspausdintiDiena(74, matavimai)
+# bendraStatistika("./output_files/bendra_statistika.txt", matavimai)
+# krituliuAnalize("./output_files/krituliai.txt", matavimai)
+# ekstremaliosDienos("./output_files/audra.txt", matavimai)
+# menesiuStatistika("./output_files/menesiai.txt", matavimai)
+# metuLaikuStatistika("./output_files/metai.txt", matavimai)
 
 # print("---------")
 # print(matavimai[0].temperatura[0])

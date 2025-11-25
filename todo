@@ -170,7 +170,7 @@ Uzduotys:
       ✔ šalčiausią dieną (data + savaitės diena + temperatūra) @done(25-11-24 23:03)
       ✔ dienų skaičių, kai temperatūra buvo > +25°C @done(25-11-24 23:03)
       ✔ dienų skaičių, kai temperatūra buvo < –10°C @done(25-11-24 23:03)
-  ☐ 3. Kritulių analizė krituliai.txt
+  ✔ 3. Kritulių analizė krituliai.txt @done(25-11-24 23:42)
     Sudarykite kritulių histogramą (tekstinę), pvz.:
     0–5 mm ___██████████████████████████████████████████████ ___(242 d.)
     6–15 mm __██████████████████ _______________________________(78 d.)
@@ -180,18 +180,18 @@ Uzduotys:
     (pabandyk print("\u2588")).
     Nepamiršk pateikiamų duomenų išdėstymo (lygiuotės).
     Duomenys turi būti atvaizduoti panašiai kaip pateiktam pav.
-  ☐ 4. Ekstremalios dienos („audros“) failas audra.txt
+  ✔ 4. Ekstremalios dienos („audros“) failas audra.txt @done(25-11-25 00:05)
     Raskite visas dienas, kurios atitinka abi sąlygas:
-      ☐ vėjas ≥ 15 m/s
-      ☐ krituliai ≥ 10 mm
+      ✔ vėjas ≥ 15 m/s @done(25-11-24 23:55)
+      ✔ krituliai ≥ 10 mm @done(25-11-24 23:55)
       Tokias dienas išveskite taip:
       2023-03-14 (Antradienis) – AUDRA: krituliai 14 mm, vėjas 18 m/s
-  ☐ 5. Mėnesių statistika failas meniasiai.txt
+  ✔ 5. Mėnesių statistika failas mėnesiai.txt @done(25-11-25 00:34)
     Kiekvienam mėnesiui apskaičiuokite:
-      ☐ vidutinę temperatūrą,
-      ☐ aukščiausią ir žemiausią temperatūrą,
-      ☐ kritulių sumą,
-      ☐ vidutinį vėją.
+      ✔ vidutinę temperatūrą, @done(25-11-25 00:34)
+      ✔ aukščiausią ir žemiausią temperatūrą, @done(25-11-25 00:34)
+      ✔ kritulių sumą, @done(25-11-25 00:34)
+      ✔ vidutinį vėją. @done(25-11-25 00:34)
     Atvaizduokite aiškiai:
       GEGUŽĖ:
       Vid. temperatūra: 14.2°C
