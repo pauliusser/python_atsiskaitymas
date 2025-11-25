@@ -5,6 +5,10 @@ from src.menu import mainMenu, stOptionsMenu, eShopOptionsMenu, metOptionsMenu
 from pathlib import Path
 import os
 
+path = "./output_files"
+if not os.path.exists(path):
+  os.makedirs(path)
+
 def isval(): # konsoles isvalymas
   os.system('cls')
 
