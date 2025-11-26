@@ -13,72 +13,82 @@ def isval(): # konsoles isvalymas
   os.system('cls')
 
 def main():
-  isval()
   exit = False
   while not(exit):
+    isval()
     mainMenu()
     inp = input("pasirinkite programą: ")
+    isval()
     match inp:
       # MARK: studentai
       case"1":
+        inputFile = "./input_files/studentai_lietuviski_INT.csv"
         pazangusOut = "./output_files/pazangus.csv"
         ataskaitaOut = "./output_files/ataskaita.txt"
-        stList = st.studNusk("./input_files/studentai_lietuviski_INT.csv")
+        stList = st.studNusk(inputFile)
+        if len(stList) == 0 :
+          input("duomenų nėra: paspauskite enter\n")
+          continue
+        print(f'failas "{inputFile}" nuskaitytas')
+        input("paspauskite enter\n")
         exitStud = False
-        isval()
-        print("Studentų analizė:")
         while not(exitStud):
-          print("\n\n---pasirinkimai---")
+          isval()
+          print("Studentų analizė:\n\n---pasirinkimai---")
           stOptionsMenu()
           anOption = input("pasirinkite veiksmą: ")
-          print("")
+          isval()
           match anOption:
             case "1": # išrikiuoti studentų duomenis pagal vidurkį
               st.prntVidurkiuRikiuote(stList)
+              input("paspauskite enter")
 
             case "2": # skolininkų sąrašas
               st.prntSkolininkuSarasas(stList)
+              input("paspauskite enter")
 
             case "3": # grupes statistika
               st.prntGrupesStat(stList)
+              input("paspauskite enter")
               
             case "4": # sukurti pažangių studentų sarašą 'pazangus.csv'
               st.pazangiujuFailas(pazangusOut, stList)
               print(f'pažangių studentų sarašas sukurtas {pazangusOut}')
+              input("paspauskite enter")
               
             case "5": # sukurti grupės duomenų ataskaitą 'ataskaita.txt'
               st.ataskaita(ataskaitaOut, stList)
               print(f'grupės duomenų ataskaita sukurta {ataskaitaOut}')
+              input("paspauskite enter")
 
-            case "x": # grįžti
-              isval()
+            case "x": # iseiti is studentu programos
               exitStud = True
 
             case _: # klaidos atvejis
               print("neteisingas pasirinkimas")
-
-          input("paspauskite enter")
+              input("paspauskite enter")
 
       # MARK: eshop
       case"2":
         exitEShop = False
-        isval()
-        print("e-parduotuvės sandėlio valdymas:")
-        data = []
         prekes = []
         dataDir = "./input_files/prekes250.txt"
         sarasoDir = "./output_files/sandelis.csv"
         ataskDir = "./output_files/sandelio_ataskaita.txt" 
         file_path = Path(sarasoDir) # cia tam kad po to butu galima patikrinti ar failas egzistuoja
+        isval()
+        data = eShop.duomenuNuskaitymas(dataDir)
+        if len(data) == 0:
+          input("duomenų nėra, paspauskite enter\n")
+          continue
+        print(f'duomenys iš: "{dataDir}" nuskaityti')
+        input("paspauskite enter\n")
         while not(exitEShop):
-          if len(data) == 0:
-            input(f'paspauskite enter, kad nuskaitytumėte duomenis iš "{dataDir}"')
-            data = eShop.duomenuNuskaitymas(dataDir)
-            print(f'duomenys iš: "{dataDir}" nuskaityti')
-          print("\n\n---pasirinkimai---")
+          isval()
+          print("e-parduotuvės sandėlio valdymas:\n\n---pasirinkimai---")
           eShopOptionsMenu()
           eShopOption = input("pasirinkite veiksmą: ")
-          print("")
+          isval()
           match eShopOption:
             case "1": # sugeneruoti atsitiktinių prekių sąrašo failą ir jo nuskaitymas
               eShop.prekiuGeneravimas(data, sarasoDir)
@@ -95,8 +105,10 @@ def main():
                   prekes = eShop.prekiuNuksaitymas(sarasoDir)
                 exitAnalize = False
                 while not(exitAnalize):
+                  isval()
                   print ("---pasirinkimai---\n1. sandėlio statistika\n2. analizuoti kategorijas\nx. grįžti")
                   optAnalize = input(f"pasirinkite veiksmą: ")
+                  isval()
                   match optAnalize:
                     case "1": # sandėlio statistika
                       eShop.analizuotiA(prekes)
@@ -124,7 +136,6 @@ def main():
                 input("paspauskite enter")
 
             case "x": # išėjimas iš eshop programos
-              isval()
               exitEShop = True
 
             case _: # klaidos atvejis eshop programoje
@@ -134,23 +145,22 @@ def main():
       case"3":
         exitMet = False
         matavimai = None
-        isval()
-        print("meteorologinių duomenų analizė:")
         inpMetDPath = "./input_files/meteo365_no_date.txt"
         outBendStPath = "./output_files/bendra_statistika.txt"
         outKrAnPath = "./output_files/krituliai.txt"
         outEkstDPath = "./output_files/audra.txt"
         outMenStPath = "./output_files/menesiai.txt"
         outSezAtPath = "./output_files/metai.txt"
+        isval()
+        matavimai = met.duomenuNuskaitymas("./input_files/meteo365_no_date.txt")
+        print(f'meteorologiniai duomenys iš: "{inpMetDPath}" nuskaityti')
+        input(f'paspauskite enter')
         while not(exitMet):
-          if matavimai == None:
-            input(f'paspauskite enter, kad nuskaitytumėte duomenis iš "{inpMetDPath}"')
-            matavimai = met.duomenuNuskaitymas("./input_files/meteo365_no_date.txt")
-            print(f'meteorologiniai duomenys iš: "{inpMetDPath}" nuskaityti')
-          print("\n\n---pasirinkimai---")
+          isval()
+          print("meteorologinių duomenų analizė:\n\n---pasirinkimai---")
           metOptionsMenu()
           metOpt = input("pasirinkite veiksmą: ")
-          print("")
+          isval()
           match metOpt:
             case "1": # isspausdina pasirinktos dienos duomenis
               diena = input("pasirinkite sk. dienai nuo 1 iki 365: ")
@@ -186,7 +196,6 @@ def main():
               input("paspauskite enter")
             
             case "x": # isejimas is meteo programos
-              isval()
               exitMet = True
 
             case _: # klaidos atvejis meteo programoje
@@ -196,7 +205,10 @@ def main():
       case"x": 
         exit = True
         isval()
-        print("pabaiga")
+        print(
+        "              pabaiga\n\n" \
+        "Programą parašė: Paulius Šermukšnis\n\n" \
+        "            2025 11 27\n\n")
       
       # klaidos atvejis pagrindiniame meniu
       case _: 

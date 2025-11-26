@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 from statistics import median
 
+# MARK: Class
 class Matavimas:
   def __init__(self, diena, temperatura, krituliai, vejas):
     # print(diena, temperatura, krituliai, vejas)
@@ -55,17 +56,34 @@ Metų laikas: {self.metuLaikas}
 Temperatūra: {self.temperatura[1]}
 Krituliai: {self.krituliai[1]}
 Vėjas: {self.vejas[1]}"""
-
+  
+# MARK: nuskaitymas
 def duomenuNuskaitymas(filepath):
   matavimai = []
-  with open(filepath, "r", encoding="utf-8") as f:
-    lines = f.readlines()
-    for i, line in enumerate(lines):
-      if i > 0:
-        data = line.strip().split(";")
-        matavimai.append(Matavimas(*data))
+  try:
+    with open(filepath, "r", encoding="utf-8") as f:
+      lines = f.readlines()
+      for i, line in enumerate(lines):
+        if i > 0: # tiesiog ignoruojama pirma eilutė
+          data = line.strip().split(";")
+          if len(data) != 4:
+            print(f'\033[31mklaida {i} eilutėje\033[0m turi būti 4 duomenys')
+          try:
+            int(data[0])
+            float(data[1])
+            float(data[2])
+            float(data[3])
+          except ValueError:
+            print(f'\033[31mklaida {i} eilutėje\033[0m netinkami duomenys: {line.strip("\n")}')
+            continue
+          matavimai.append(Matavimas(*data))
+  except FileNotFoundError:
+    print(f'\033[31mklaida:\033[0m failas "{filepath}" nerastas')
+    return []
+  print(f"nuskaityti {len(matavimai)} įrašai")
   return matavimai
 
+# MARK: bendr stat
 def bendraStatistika(filepath, matavimai):
   temps = [m.temperatura[0] for m in matavimai]
   metuVidTemp = round(sum(temps) / len(matavimai), 2)
@@ -84,6 +102,7 @@ def bendraStatistika(filepath, matavimai):
     f.write(f"dienų skaičius, kai temperatūra buvo > +25°C: {karstuDienSk}\n")
     f.write(f"dienų skaičius, kai temperatūra buvo < –10°C: {saltuDienuSk}\n")
 
+# MARK: krit an
 def krituliuAnalize(filepath, matavimai):
   def dKK(nuo, iki=None): # dienos kai krituliai buvo nuo iki
     return len([m for m in matavimai if m.krituliai[0] >= nuo and (iki is None or m.krituliai[0] < iki)])
@@ -94,6 +113,7 @@ def krituliuAnalize(filepath, matavimai):
     for i, s in enumerate(krDienuSk):
       f.write(f"{diapozonas[i]:>5} mm {"█" * int(s / max(krDienuSk) * 50):<50} ({s} d.)\n")
 
+# MARK: audros
 def ekstremaliosDienos(filepath, matavimai):
   audros = [m for m in matavimai if m.vejas[0] >= 15 and m.krituliai[0] >= 10]
   with open(filepath, "w", encoding="utf-8") as f:
@@ -101,6 +121,7 @@ def ekstremaliosDienos(filepath, matavimai):
     for a in audros:
       f.write(f"{a.data} {"(" + a.savaitesDiena :>17}) - AUDRA: krituliai {a.krituliai[1] :<4}, vėjas {a.vejas[1] :<4}\n")
 
+# MARK: men stat
 def menesiuStatistika(filepath, matavimai):
   menesiai = Matavimas.menesiai()
   with open(filepath, "w", encoding="utf-8") as f:
@@ -116,6 +137,7 @@ def menesiuStatistika(filepath, matavimai):
       f.write(f"Viso kritulių:    {round(sum(kritList), 1)} mm\n")
       f.write(f"Vid. vėjas:       {round(sum(vejoList) / len(vejoList), 1)} m/s\n")
 
+# MARK: sezonu stat
 def metuLaikuStatistika(filepath, matavimai):
   metuLaikai = Matavimas.metuLaikai()
   with open(filepath, "w", encoding="utf-8") as f:
@@ -136,19 +158,20 @@ def metuLaikuStatistika(filepath, matavimai):
       f.write(f"\n-- šilčiausia diena --{str(maxTempDiena)}\n")
       f.write(f"\n-- daugiausia krit. diena --{str(maxKritDiena)}\n\n")
 
+# MARK: print day
 def isspausdintiDiena(diena, matavimai):
   if 0 > diena > 365:
     print ("metuose tokios dienos nėra")
   else:
     print (matavimai[diena - 1])
 
+
+# ---------atkomentuoti prasitestavimui----------
+
 # matavimai = duomenuNuskaitymas("./input_files/meteo365_no_date.txt")
-# isspausdintiDiena(74, matavimai)
 # bendraStatistika("./output_files/bendra_statistika.txt", matavimai)
 # krituliuAnalize("./output_files/krituliai.txt", matavimai)
 # ekstremaliosDienos("./output_files/audra.txt", matavimai)
 # menesiuStatistika("./output_files/menesiai.txt", matavimai)
 # metuLaikuStatistika("./output_files/metai.txt", matavimai)
-
-# print("---------")
-# print(matavimai[0].temperatura[0])
+# isspausdintiDiena(74, matavimai)

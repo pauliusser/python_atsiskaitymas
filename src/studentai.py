@@ -26,25 +26,37 @@ class Studentas:
 def studNusk(path):
   studentai = []
 
-  with open(path, newline="", encoding="utf-8") as studCsvFile:
-    reader = csv.DictReader(studCsvFile)
-    for row in reader:
-      vardas = row['Vardas']
-      pavarde = row['Pavarde']
-      pazymiai = []
-      for i in range(1,11):
-        p = row[f"paz{i}"]
-        if p != "":
-          pazymiai.append(int(p))
-      studentai.append(Studentas(vardas, pavarde, pazymiai))
-
-  for st in studentai:
-    valid = True
-    for p in st.pazymiai:
-      if p < 1 or p > 10:
-        valid = False
-        break
-    if not valid: print(f"klaida, studento {st.vardas} {st.pavarde} ne visi pažymiai yra 1-10 diapozone")
+  try:
+    with open(path, newline="", encoding="utf-8") as studCsvFile:
+      reader = csv.DictReader(studCsvFile)
+      for i, row in enumerate(reader):
+        if len(row) != 12:
+          print(f"\033[31mklaida {i + 1} eilutėje\033[0m turi būti 12 duomenų, o yra {len(row)}")
+          continue
+        vardas = row['Vardas']
+        pavarde = row['Pavarde']
+        pazymiai = []
+        error = False
+        for j in range(1,11):
+          p = row[f"paz{j}"]
+          if p != "":
+            try:
+              pazymys = int(p)
+            except ValueError:
+              print(f'\033[31mklaida {i + 1} eiluteje\033[0m pozicijoje "paz{j}" ne pažymys: "{p}"')
+              error = True
+              continue
+            if pazymys < 1 or pazymys > 10:
+              print(f'\033[31mklaida {i + 1} eiluteje\033[0m pozicijoje "paz{j}" pažymys: "{p}" nėra nuo 1 iki 10')
+              error = True
+              continue
+            pazymiai.append(pazymys)
+        if error: continue
+        studentai.append(Studentas(vardas, pavarde, pazymiai))
+  except FileNotFoundError:
+        print(f'\033[31mklaida:\033[0m failas "{path}" nerastas')
+        return []
+  print(f"nuskaityti {len(studentai)} įrašai")
   return studentai
 
 # MARK: st. analize
@@ -62,6 +74,8 @@ def prntVidurkiuRikiuote(st):
       print(f"vidurkis: {s.vidurkis()}\n")
       i += 1
 
+# skolininku sarasas
+
 def skolininkuSarasas(studentai):
   return [s for s in studentai if s.vidurkis() is None]
 
@@ -71,6 +85,8 @@ def prntSkolininkuSarasas(st):
   for s in skolininkai:
     print(s)
     print("")
+
+# grup stat
 
 def grupesStat(studentai):
   # bendras vidurkis
@@ -157,3 +173,13 @@ def ataskaita(path, studentai):
     ataskaita.write(f"didziausias vidurkis: {stat['maxVidurkis']}\n")
     ataskaita.write(f"mažiausias vidurkis {stat['minVidurkis']}\n")
     ataskaita.write(f"studentų skaičius kurių vidurkis ≥ 8 yra: {stat['pazangiujuSk']}\n")
+
+
+# ---------atkomentuoti prasitestavimui----------
+
+# stList = studNusk("./input_files/studentai_lietuviski_INT.csv")
+# prntVidurkiuRikiuote(stList)
+# prntSkolininkuSarasas(stList)
+# prntGrupesStat(stList)
+# pazangiujuFailas("./output_files/pazangus.csv", stList)
+# ataskaita("./output_files/ataskaita.txt", stList)

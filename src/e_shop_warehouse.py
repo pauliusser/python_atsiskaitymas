@@ -2,13 +2,32 @@ import random
 import csv
 
 def duomenuNuskaitymas(filepath):
-  with open(filepath, "r", encoding="utf-8") as f:
-    lines = f.readlines()
-    data = [l.strip().split(";") for l in lines]
+  data = []
+  try:
+    with open(filepath, "r", encoding="utf-8") as f:
+      lines = f.readlines()
+      # data = [l.strip().split(";") for l in lines]
+      for i, line in enumerate(lines):
+        lineData = line.strip().split(";")
+
+        # duomenų kiekio eilutėje validacija
+        if len(lineData) != 3:
+          print(f"\033[31mklaida {i} eilutėje\033[0m\n    {line}    ne 3 duomenys - eilutė praleidžiama")
+          continue
+        
+        # duomenų tipo 3 pozicijoje validacija
+        try:
+          float(lineData[2])
+        except ValueError:
+          print(f"\033[31mklaida {i} eilutėje\033[0m\n    {line}    pozicijoje 3 ne skaičius - eilutė praleidžiama")
+          continue
+
+        data.append(lineData)
+  except FileNotFoundError:
+        print(f'\033[31mklaida:\033[0m failas "{filepath}" nerastas')
+        return []
+  print(f"nuskaityti {len(data)} įrašai")
   return data
-
-
-
 
 def prekiuGeneravimas(data, filepath):
   kat = sorted(set([d[1] for d in data]))
@@ -22,7 +41,6 @@ def prekiuGeneravimas(data, filepath):
   # nesistengsiu rasti logikos ir duomenis sugeneruosiu atsitiktinai iš to kas yra pateikta
   # teoriškai būtų galima išsipirkti chatGPT api rakta tada pasikurt "pip install openai"
   # tada pateikus gudrią užklausą ir sulaukus ats. DI pagal semantiką sugrupuotu kategorijas ir daiktus. :)
-
 
   rndInts = [0 for _ in kat]
   maxIndex = len(rndInts) - 1
@@ -79,7 +97,6 @@ def prekiuNuksaitymas(filepath):
           header[3]: float(line[3]),    # kaina
           header[4]: int(line[4])       # likutis
         })
-
   return prekes
 
 def analizuotiA (prekes):
@@ -135,9 +152,11 @@ def kurtiAtaskaita(prekes, filepath):
       drawTable(sortedLikSar)
     f.write(f"\nVisų sandėlio prekių vertė: {sandVert} eur.")
 
-# data = duomenuNuskaitymas("./files/prekes250.txt")
-# prekiuGeneravimas(data, "./files/sandėlis.csv")
-# prekes = prekiuNuksaitymas("./files/sandėlis.csv")
+# ---------atkomentuoti prasitestavimui----------
+
+# data = duomenuNuskaitymas("./input_files/prekes250.txt")
+# prekiuGeneravimas(data, "./output_files/sandėlis.csv")
+# prekes = prekiuNuksaitymas("./output_files/sandėlis.csv")
 # analizuotiA(prekes)
 # analizuotiB(prekes)
-# kurtiAtaskaita(prekes,"./files/sandelio_ataskaita.txt")
+# kurtiAtaskaita(prekes,"./output_files/sandelio_ataskaita.txt")

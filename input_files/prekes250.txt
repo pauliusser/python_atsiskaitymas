@@ -2,9 +2,9 @@ Kėdė;Apranga;495.61
 Kuprinė;Elektronika;917.36
 Arbata;Sodas;38.97
 Laikrodis;Sportas;707.84
-Lėlė;Maistas;146.22
-Pelė;Santechnika;960.85
-Laikrodis;Laisvalaikis;441.16
+Lėlė;Maistas;146.22ValueErrorInjection
+Pelė;Santechnika
+Laikrodis;Laisvalaikis;
 Megztinis;Laisvalaikis;678.27
 Klaviatūra;Laisvalaikis;417.34
 Dviratis;Higiena;935.98
